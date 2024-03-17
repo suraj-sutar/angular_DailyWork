@@ -1,0 +1,60 @@
+<p>drop-down-logic works!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-left shadow-lg rounded p-3 m-3">
+      <h2 class="display-5 text-center">Reactive Model Form</h2>
+      <form class="p-5" [formGroup]="myReactiveForm" (ngSubmit)="onSubmit()">
+        <div class="row my-4">
+          <label for="country">Country</label>
+          <select
+            name="country"
+            id="country"
+            class="form-control mt-2"
+            formControlName="country"
+            (change)="onCountryChange()"
+          >
+            <option value="" selected>Select a country</option>
+            <option *ngFor="let country of countries" [value]="country">
+              {{ country }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row my-4" *ngIf="clickCountry">
+          <label for="state">State</label>
+          <select
+            name="state"
+            id="state"
+            class="form-control mt-2"
+            formControlName="state"
+            (change)="onStateChange()"
+          >
+            <option value="" selected>Select a state</option>
+            <option *ngFor="let state of filteredStates" [value]="state">
+              {{ state }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row my-4" *ngIf="clickState">
+          <label for="city">City</label>
+          <select
+            name="city"
+            id="city"
+            class="form-control mt-2"
+            formControlName="city"
+          >
+            <option value="" selected>Select a city</option>
+            <option *ngFor="let city of filteredCities" [value]="city">
+              {{ city }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mt-4">
+          <button class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

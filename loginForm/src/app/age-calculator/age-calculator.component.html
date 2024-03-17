@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-left shadow-lg rounded p-5">
+      <h2 class="display-4 text-center my-4">Age Calculator</h2>
+      <form [formGroup]="myAgeForm">
+        <div class="form-group">
+          <label class="lead my-2" for="birthdate">Birthdate</label>
+          <input
+            type="date"
+            class="form-control"
+            id="birthdate"
+            formControlName="birthdate"
+          />
+        </div>
+        <button class="btn btn-success my-4" (click)="clickCalculate()">
+          Calculate
+        </button>
+      </form>
+      <p class="lead" *ngIf="ageAndMonthDiff">
+        Your age is: {{ ageAndMonthDiff.age }} years, and the month difference
+        is: {{ ageAndMonthDiff.monthDiff }} months.
+      </p>
+    </div>
+  </div>
+</div>

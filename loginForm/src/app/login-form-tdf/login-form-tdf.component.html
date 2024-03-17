@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-left shadow-lg rounded p-5 m-5">
+      <form #myLoginForm="ngForm" (ngSubmit)="onLogin(myLoginForm)">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <!-- create one instance of that input filed for add som validation -->
+          <input
+            class="form-control my-2"
+            type="text"
+            placeholder="Enter Username"
+            name="username"
+            id="username"
+            ngModel
+            #username="ngModel"
+            required
+            minlength="10"
+          />
+        </div>
+        <!-- then add dome validation msg after some condition -->
+        <small
+          class="mb-2 color text-danger"
+          *ngIf="username.touched && username.errors"
+        >
+          <small *ngIf="username.errors['required']"
+            >Please Enter Username</small
+          >
+          <small *ngIf="username.errors['minlength']"
+            >Minimum Length Of Username is 10</small
+          >
+        </small>
+
+        <!-- here also create a instance of the email  -->
+        <div class="form-gorup">
+          <label for="email">Email</label>
+          <input
+            class="form-control my-2"
+            type="text"
+            placeholder="Enter Email"
+            name="email"
+            id="email"
+            required
+            #email="ngModel"
+            email
+            ngModel
+          />
+        </div>
+
+        <small class="mb-2 text-danger" *ngIf="email.touched && email.errors">
+          <small *ngIf="email.errors['email']">
+            Please Enter Proper Email
+          </small>
+          <small *ngIf="email.errors['required']">Please Enter Email</small>
+        </small>
+
+        <div class="form-group">
+          <label for="course">Courses</label>
+          <select
+            class="form-control my-2 p-2"
+            name="course"
+            id="course"
+            ngModel
+          >
+            <option [value]="course" *ngFor="let course of courses">
+              {{ course }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <div class="form-check my-2" *ngFor="let gender of genders">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="gender"
+              id="{{ gender.id }}"
+              [value]="gender.value"
+              ngModel
+            />
+            <label class="form-check-label" for="{{ gender.id }}">
+              {{ gender.value }}
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <button class="btn btn-success flex">LOGIN</button>
+          <button
+            type="button"
+            class="btn btn-warning my-2 mx-2"
+            (click)="onReset(myLoginForm)"
+          >
+            RESET
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="isSubmitted">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-left shadow-lg rounded p-3 m-3">
+      <h2 class="display-6 text-center">Form Data</h2>
+      <p class="lead ms-3 mt-5">
+        USERNAME: <strong>{{ employee.username }}</strong>
+      </p>
+      <p class="lead ms-3">
+        EMAIL: <strong>{{ employee.email }}</strong>
+      </p>
+      <p class="lead ms-3">
+        COURSE: <strong>{{ employee.course }}</strong>
+      </p>
+      <p class="lead ms-3">
+        GENDER: <strong>{{ employee.gender }}</strong>
+      </p>
+    </div>
+  </div>
+</div>

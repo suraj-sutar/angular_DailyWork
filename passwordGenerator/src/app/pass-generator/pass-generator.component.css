@@ -1,0 +1,72 @@
+.mainContainer {
+  /* background-color: red; */
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+h2 {
+  font-size: 3vw;
+  text-transform: uppercase;
+}
+.lengthDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 10px 0;
+}
+.lengthDiv label {
+  font-size: 1.2vw;
+  text-transform: uppercase;
+}
+
+.lengthDiv input {
+  font-size: 1vw;
+  padding: 5px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+.checkBoxDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 25px;
+}
+
+.checkBoxDiv label {
+  font-size: 1.2vw;
+}
+
+.generateBtn button {
+  margin: 20px;
+  padding: 1vw 2vw;
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(192, 192, 192);
+}
+
+.displayPass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 10px 0;
+}
+.displayPass label {
+  font-size: 1.2vw;
+  text-transform: uppercase;
+}
+.displayPass input {
+  font-size: 1vw;
+  padding: 5px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid gray;
+}

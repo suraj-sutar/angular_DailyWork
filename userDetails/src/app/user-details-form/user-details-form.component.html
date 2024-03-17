@@ -1,0 +1,328 @@
+<div class="container-xl mt-5">
+  <div class="row justify-content-center">
+    <div class="row text-left shadow-lg rounded p-5">
+      <form
+        class="form-group row"
+        [formGroup]="myUserForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="container col-2 mt-5">
+          <p class="lead">Suraj Tanaji Sutar</p>
+          <p class="small text-opacity-25">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci
+            libero inventore ipsam nam excepturi
+          </p>
+        </div>
+        <div class="container col-5">
+          <h2 class="display-6">User Details</h2>
+          <div class="form-group" formGroupName="userDetails">
+            <div class="Form-group my-4">
+              <label for="fullName">Full Name</label>
+              <input
+                type="text"
+                formControlName="fullName"
+                id="fullName"
+                class="form-control border-0 border-bottom no-outline my-2"
+              />
+            </div>
+
+            <!-- Validation for fullName -->
+
+            <small
+              *ngIf="
+                myUserForm.get('userDetails.fullName')?.invalid &&
+                myUserForm.get('userDetails.fullName')?.touched
+              "
+              class="text-danger"
+            >
+              Full Name is required
+            </small>
+
+            <div class="Form-group my-4">
+              <label for="birthdate">Birthdate</label>
+              <input
+                type="date"
+                formControlName="birthdate"
+                id="birthdate"
+                placeholder="Your Birthday"
+                class="form-control my-2"
+              />
+            </div>
+
+            <!-- Validation for Birthdate -->
+            <small
+              *ngIf="
+                myUserForm.get('userDetails.birthdate')?.invalid &&
+                myUserForm.get('userDetails.birthdate')?.touched
+              "
+              class="text-danger"
+            >
+              Birthdate is required
+            </small>
+
+            <div class="Form-group my-4">
+              <label for="gender">Gender</label>
+              <select
+                name="gender"
+                id="gender"
+                class="form-control mt-2"
+                formControlName="gender"
+              >
+                <option value="" selected>Select Gender</option>
+                <option [value]="gender" *ngFor="let gender of genders">
+                  {{ gender }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Validation for Gender -->
+            <small
+              *ngIf="
+                myUserForm.get('userDetails.gender')?.invalid &&
+                myUserForm.get('userDetails.gender')?.touched
+              "
+              class="text-danger"
+            >
+              Gender is required
+            </small>
+
+            <div class="Form-group my-4 row">
+              <div class="col-4">
+                <label for="country">Country</label>
+                <select
+                  name="country"
+                  id="country"
+                  class="form-control mt-2"
+                  formControlName="country"
+                >
+                  <option *ngFor="let country of countries" [value]="country">
+                    {{ country }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="col">
+                <label for="phone">Phone</label>
+                <input
+                  type="number"
+                  formControlName="phone"
+                  id="phone"
+                  class="form-control border-0 border-bottom no-outline my-2"
+                />
+              </div>
+
+              <!-- Validation for Phone Number -->
+              <small
+                *ngIf="
+                  myUserForm.get('userDetails.phone')?.invalid &&
+                  myUserForm.get('userDetails.phone')?.touched
+                "
+                class="text-danger"
+              >
+                Phone is required
+              </small>
+            </div>
+
+            <div class="Form-group my-4">
+              <label for="bio">Bio</label>
+              <textarea
+                class="form-control border-0 border-bottom"
+                rows="4"
+                cols="10"
+                formControlName="bio"
+              ></textarea>
+            </div>
+
+            <!-- Validation for Bio -->
+            <small
+              *ngIf="
+                myUserForm.get('userDetails.bio')?.invalid &&
+                myUserForm.get('userDetails.bio')?.errors?.['maxlength']
+              "
+              class="text-danger"
+            >
+              Bio is required and must not exceed 256 characters
+            </small>
+          </div>
+        </div>
+
+        <div class="container col-5">
+          <h2 class="display-6">Account Details</h2>
+          <div formGroupName="accountDetails">
+            <div class="Form-group my-4">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                formControlName="username"
+                id="username"
+                class="form-control border-0 border-bottom no-outline my-2"
+              />
+            </div>
+
+            <!-- Validation for Username -->
+            <small
+              *ngIf="
+                myUserForm.get('accountDetails.username')?.invalid &&
+                myUserForm.get('accountDetails.username')?.touched
+              "
+              class="text-danger"
+            >
+              <small
+                *ngIf="
+                  myUserForm
+                    .get('accountDetails.username')
+                    ?.hasError('required')
+                "
+              >
+                Username is required
+              </small>
+              <small
+                *ngIf="
+                  myUserForm
+                    .get('accountDetails.username')
+                    ?.hasError('minlength')
+                "
+              >
+                Username must be at least 5 characters long
+              </small>
+              <small
+                *ngIf="
+                  myUserForm
+                    .get('accountDetails.username')
+                    ?.hasError('maxlength')
+                "
+              >
+                Username cannot exceed 25 characters
+              </small>
+            </small>
+
+            <div class="Form-group my-4">
+              <label for="email">Email</label>
+              <input
+                type="emial"
+                formControlName="email"
+                id="email"
+                class="form-control border-0 border-bottom no-outline my-2"
+              />
+            </div>
+
+            <!-- Validation for Email -->
+            <small
+              *ngIf="
+                myUserForm.get('accountDetails.email')?.invalid &&
+                myUserForm.get('accountDetails.email')?.touched
+              "
+              class="text-danger"
+            >
+              <small
+                *ngIf="myUserForm.get('accountDetails.email')?.errors?.['required']"
+              >
+                Email is required
+              </small>
+              <small
+                *ngIf="myUserForm.get('accountDetails.email')?.errors?.['email']"
+              >
+                Invalid email format
+              </small>
+            </small>
+            <div class="Form-group my-4">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                formControlName="password"
+                id="password"
+                class="form-control border-0 border-bottom no-outline my-2"
+              />
+            </div>
+
+            <!-- Validation for Password -->
+
+            <small
+              *ngIf="
+                myUserForm.get('accountDetails.password')?.invalid &&
+                myUserForm.get('accountDetails.password')?.touched
+              "
+              class="text-danger"
+            >
+              <small
+                *ngIf="
+                  myUserForm.get('accountDetails.password')?.errors?.['required']
+                "
+              >
+                Password is required
+              </small>
+              <small
+                *ngIf="
+                  myUserForm.get('accountDetails.password')?.errors?.['minlength']
+                "
+              >
+                Password must be at least 5 characters long
+              </small>
+            </small>
+            <div class="Form-group my-4">
+              <label for="confPassword">Confirm Password</label>
+              <input
+                type="password"
+                formControlName="confPassword"
+                id="confPassword"
+                class="form-control border-0 border-bottom no-outline my-2"
+              />
+            </div>
+
+            <small
+              *ngIf="
+                myUserForm.get('accountDetails.confPassword')?.invalid &&
+                myUserForm.get('accountDetails.confPassword')?.touched
+              "
+              class="text-danger"
+            >
+              <small
+                *ngIf="
+                  myUserForm.get('accountDetails.confPassword')?.errors?.['required']
+                "
+              >
+                Confirm Password is required
+              </small>
+            </small>
+
+            <div class="Form-group my-4">
+              <input
+                type="checkbox"
+                formControlName="conditionCheck"
+                id="conditionCheck"
+                class="my-2 me-2"
+              />
+              <label for="conditionCheck">I accept terms and condition</label>
+            </div>
+
+            <small
+              *ngIf="
+                myUserForm.get('accountDetails.conditionCheck')?.invalid &&
+                myUserForm.get('accountDetails.conditionCheck')?.touched
+              "
+              class="text-danger"
+            >
+              <small
+                *ngIf="
+                  myUserForm.get('accountDetails.conditionCheck')?.errors
+                    ?.['required']
+                "
+              >
+                You must agree to the terms and conditions
+              </small>
+            </small>
+            <div class="Form-group my-4">
+              <button
+                type="submit"
+                class="btn btn-secondary my-4"
+                [disabled]="myUserForm.invalid"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

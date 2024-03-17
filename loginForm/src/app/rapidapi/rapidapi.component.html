@@ -1,0 +1,47 @@
+<!-- <div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col text-left shadow-lg rounded p-5">
+      <h2 class="display-5 my-4">News Data</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="lead">Title</th>
+            <th class="lead">Publisher</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of datas.news">
+            <td>{{ item.title }}</td>
+            <td>{{ item.publisher }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> -->
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col text-left shadow-lg rounded p-5">
+      <h2 class="display-6 my-4">Quotes Data</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="lead">Shortname</th>
+            <th class="lead">QuoteType</th>
+            <th class="lead">Symbol</th>
+            <th class="lead">Exchange</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of datas.quotes">
+            <td>{{ item.shortname }}</td>
+            <td>{{ item.quoteType }}</td>
+            <td>{{ item.symbol }}</td>
+            <td>{{ item.exchange }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,253 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="row text-left shadow-lg rounded">
+      <h2 class="display-6 text-center my-2">Registration From</h2>
+      <form class="row" [formGroup]="myregisterFrom" (ngSubmit)="onSubmit()">
+        <div class="col-6 mt-5 pt-5">
+          <img
+            class="figure-img img-fluid justify-content-center mt-5 pt-3"
+            src="https://img.freepik.com/free-vector/employer-meeting-job-applicant-pre-employment-assessment-employee-evaluation-assessment-form-report-performance-review-concept-illustration_335657-2058.jpg?t=st=1710414021~exp=1710417621~hmac=05fb5312dd2818a3b97b5115d91c469076dde5d28bf4df11c34961dd5cb1e071&w=996"
+            alt="registration Image"
+          />
+        </div>
+        <div class="form-group col-6">
+          <div class="Form-group my-4">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              formControlName="firstName"
+              id="firstName"
+              class="form-control border-0 border-bottom no-outline my-2"
+            />
+          </div>
+          <!-- ----------------------First Name Validation----------------------- -->
+          <small
+            class="text-danger"
+            *ngIf="
+              myregisterFrom.get('firstName')?.invalid &&
+              myregisterFrom.get('firstName')?.touched
+            "
+          >
+            <small
+              *ngIf="myregisterFrom.get('firstName')?.errors?.['required']"
+            >
+              First Name Is Required</small
+            >
+            <small
+              *ngIf="myregisterFrom.get('firstName')?.errors?.['minlength']"
+            >
+              First Name must be at least 5 characters long
+            </small>
+            <small
+              *ngIf="myregisterFrom.get('firstName')?.errors?.['maxlength']"
+            >
+              First Name cannot exceed 25 characters
+            </small>
+          </small>
+
+          <div class="Form-group my-4">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              formControlName="lastName"
+              id="lastName"
+              class="form-control border-0 border-bottom no-outline my-2"
+            />
+          </div>
+
+          <!-- ----------------------Last Name Validation----------------------- -->
+
+          <small
+            class="text-danger"
+            *ngIf="
+              myregisterFrom.get('lastName')?.invalid &&
+              myregisterFrom.get('lastName')?.touched
+            "
+          >
+            <small *ngIf="myregisterFrom.get('lastName')?.errors?.['required']">
+              Last Name Is Required</small
+            >
+            <small
+              *ngIf="myregisterFrom.get('lastName')?.errors?.['maxlength']"
+            >
+              Last Name cannot exceed 15 characters
+            </small>
+          </small>
+
+          <div class="Form-group my-4">
+            <label for="age">Age</label>
+            <input
+              type="text"
+              formControlName="age"
+              id="age"
+              class="form-control border-0 border-bottom no-outline my-2"
+            />
+          </div>
+
+          <!-- ----------------------Age Validation----------------------- -->
+          <small
+            class="text-danger"
+            *ngIf="
+              myregisterFrom.get('age')?.invalid &&
+              myregisterFrom.get('age')?.touched
+            "
+          >
+            <small *ngIf="myregisterFrom.get('age')?.errors?.['required']">
+              Age Is Required
+            </small>
+            <small *ngIf="myregisterFrom.get('age')?.errors?.['ageOutOfRange']"
+              >Your Age Is Not Valid
+            </small>
+          </small>
+
+          <div class="Form-group my-4">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              formControlName="email"
+              id="email"
+              class="form-control border-0 border-bottom no-outline my-2"
+            />
+          </div>
+          <!-- ----------------------Email Validation----------------------- -->
+          <small
+            class="text-danger"
+            *ngIf="
+              myregisterFrom.get('email')?.invalid &&
+              myregisterFrom.get('email')?.touched
+            "
+          >
+            <small *ngIf="myregisterFrom.get('email')?.errors?.['required']">
+              Email Feild Is Required</small
+            >
+            <small *ngIf="myregisterFrom.get('email')?.errors?.['email']">
+              Invalid Email Format
+            </small>
+          </small>
+
+          <div class="Form-group my-4">
+            <label for="phone">Phone</label>
+            <input
+              type="number"
+              formControlName="phone"
+              id="phone"
+              class="form-control border-0 border-bottom no-outline my-2"
+              (input)="validatePhoneNumber($event)"
+            />
+          </div>
+
+          <!-- ----------------------Phone Validation----------------------- -->
+          <small
+            class="text-danger"
+            *ngIf="
+              myregisterFrom.get('phone')?.invalid &&
+              myregisterFrom.get('phone')?.touched
+            "
+          >
+            <small *ngIf="myregisterFrom.get('phone')?.errors?.['required']">
+              Phone Number Is Required
+            </small>
+            <small
+              *ngIf="myregisterFrom.get('phone')?.errors?.['maxLengthExceeded']"
+            >
+              Phone Number Must Be A Valid Number
+            </small>
+          </small>
+
+          <div class="Form-group my-4 row">
+            <div class="col-6">
+              <label for="city">City</label>
+              <select
+                class="form-control form-select my-2"
+                name="city"
+                id="city"
+              >
+                <option [value]="city" *ngFor="let city of cites">
+                  {{ city }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-6">
+              <label for="gender">Gender</label>
+              <select
+                class="form-control form-select my-2"
+                name="gender"
+                id="gender"
+              >
+                <option [value]="gender" *ngFor="let gender of genders">
+                  {{ gender }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- ----------------------Gender Validation----------------------- -->
+          <small
+            class="text-danger"
+            *ngIf="
+              myregisterFrom.get('gender')?.invalid &&
+              myregisterFrom.get('gender')?.touched
+            "
+          >
+            <small *ngIf="myregisterFrom.get('gender')?.errors?.['required']">
+              Gender Is Required</small
+            >
+          </small>
+
+          <div class="Form-group my-4">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              formControlName="password"
+              id="password"
+              class="form-control border-0 border-bottom no-outline my-2"
+            />
+          </div>
+
+          <!-- ----------------------Password Validation----------------------- -->
+          <small
+            class="text-danger"
+            *ngIf="
+              myregisterFrom.get('password')?.invalid &&
+              myregisterFrom.get('password')?.touched
+            "
+          >
+            <small *ngIf="myregisterFrom.get('password')?.errors?.['required']">
+              Password Is Required</small
+            >
+          </small>
+
+          <div class="Form-group my-4">
+            <label for="confPassword">Confirm Password</label>
+            <input
+              type="password"
+              formControlName="confPassword"
+              id="confPassword"
+              class="form-control border-0 border-bottom no-outline my-2"
+            />
+          </div>
+
+          <!-- ----------------------Confirm Password Validation----------------------- -->
+          <small
+            class="text-danger"
+            *ngIf="
+              myregisterFrom.get('confPassword')?.invalid &&
+              myregisterFrom.get('confPassword')?.touched
+            "
+          >
+            <small
+              *ngIf="myregisterFrom.get('confPassword')?.errors?.['required']"
+            >
+              Confirm Password Is Required</small
+            >
+          </small>
+
+          <div>
+            <button class="btn btn-success my-2">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
